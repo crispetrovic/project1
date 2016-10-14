@@ -11,14 +11,37 @@
   if (!$con){ die('Could not connect: ' . mysql_error()); }
   mysql_select_db($dbname, $con);
   $result = mysql_query($sql_query);
+  
+   
 
-  echo "{ \"cols\": [ {\"id\":\"\",\"label\":\"Feeling\", \"type\":\"string\"\} ], \"rows\": [ ";
+  
+    
+  /*
+  * original example given for use
+  *
+  $data = [
+    'foo' => 1,
+    'bar' => true,
+    'baz' => [
+        'a',
+        1.3,
+        null
+    ]
+  ];
+  *
+  */
 
+
+  
   $total_rows = mysql_num_rows($result);
   while($row = mysql_fetch_array($result)){
-    echo "{\"c\":[{\"v\":\"" . $row['feeling'] . "\"}";
+    $data = mysql_fetch_assoc($result))
+
+    $json = json_encode($data);
+
+    echo $json;
   }
 
-  echo " ] }";
+  
   mysql_close($con);
 ?>

@@ -11,28 +11,39 @@
     if (isset($_SESSION['id']))
       $id = $_SESSION['id'];
 
-  $sql_query = "SELECT feeling FROM history WHERE user_id = '$id'";
+  $sql_query = mysql_query("SELECT feeling FROM history WHERE user_id = '$id'");
+
 
   $con = mysql_connect($dbserver,$dbuser,$dbpass);
   if (!$con){ die('Could not connect: ' . mysql_error()); }
   mysql_select_db($dbname, $con);
   $result = mysql_query($sql_query);
-  /* testing
-      *
-      {"id":"username","label":"Feeling","type":"string"}
-      *
-      */
-  echo "{ \"cols\": [ {\"id\":\"feeling\",\"label\":\"Feeling\",\"type\":\"string\"\} ]";
   $total_rows = mysql_num_rows($result);
-  $row_num = 0;
   while($row = mysql_fetch_array($result)){
-    $row_num++;
-    if ($row_num == $total_rows){
-      echo "{\"c\":[{\"v\":\"" . $row['feeling'] . "\"}";
-    } else {
-      echo "{\"c\":[{\"v\":\"" . $row['feeling'] . "\"}";
-    }
-  }
-  echo " ] }";
+    $data = mysql_fetch_assoc($result))
+    $json = json_encode($data);
+
+    echo $json;
+     }
+   
+
+  
+    
+  /*
+  * original example given for use
+  *
+  $data = [
+    'foo' => 1,
+    'bar' => true,
+    'baz' => [
+        'a',
+        1.3,
+        null
+    ]
+  ];
+  *
+  */
+
+
   mysql_close($con);
 ?>
