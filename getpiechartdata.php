@@ -1,10 +1,10 @@
 <?php
   $q=$_GET["q"];
-  $dbuser="crissapetrovic";
-  $dbname="final_project";
-  $dbpass="v1kCjsvLYytrBTGV";
-  $dbserver="127.0.0.1";
-  
+  $dbuser="";
+  $dbname="";
+  $dbpass="";
+  $dbserver="";
+
   //Start session
     session_start();
     //Read user's session (if it is set)
@@ -25,24 +25,7 @@
 
     echo $json;
      }
-   
-
-  
-    
-  /*
-  * original example given for use
-  *
-  $data = [
-    'foo' => 1,
-    'bar' => true,
-    'baz' => [
-        'a',
-        1.3,
-        null
-    ]
-  ];
-  *
-  */
+ 
 
 
   mysql_close($con);
